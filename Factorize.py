@@ -7,7 +7,7 @@ logger.setLevel(logging.INFO)
 
 
 def factorize(*numbers):
-    """Простий код факторизації"""
+    """Простий однопроцесорний однопоточний код факторизації"""
     result = []
     for num in numbers:
         logger.info(f"Process number: {num}")
