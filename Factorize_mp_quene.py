@@ -1,4 +1,4 @@
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Queue, current_process
 import logging
 
 logger = logging.getLogger(__name__)
@@ -8,7 +8,8 @@ logger.setLevel(logging.INFO)
 
 
 def find_factors(num, queue):
-    logger.info(f"Process number: {num}")
+    process_id = current_process().name
+    logger.info(f"Process number {num} in process name {process_id}")
     factors = []
     for i in range(1, num + 1):
         if num % i == 0:
