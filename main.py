@@ -2,6 +2,7 @@ import time
 
 
 import Factorize
+import Factorize_thr
 import Factorize_mp_quene
 import Factorize_mp_pool
 import Factorize_assync_mp
@@ -32,6 +33,8 @@ if __name__ == "__main__":
     for fn in [
         # синхронний однопроцесорний код
         timer(Factorize.factorize),
+        # мультипоточний однопроцесорний код
+        timer(Factorize_thr.factorize),
         # мультипроцесорний код з пулом
         timer(Factorize_mp_pool.factorize),
         # мультипроцесорний код нз пулом executor
