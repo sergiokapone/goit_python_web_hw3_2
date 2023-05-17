@@ -29,9 +29,11 @@ def factorize(*numbers):
         pr.start()
         processes.append(pr)
 
+    # Очікуємо виконання процесів
     for pr in processes:
         pr.join()
 
+    # Витягуємо з черги і додаємо в масив результатів
     while not queue.empty():
         result = queue.get()
         results.append(result)
