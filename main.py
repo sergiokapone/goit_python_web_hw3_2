@@ -3,9 +3,9 @@ import time
 
 import Factorize
 import Factorize_thr
-import Factorize_mp_quene
 import Factorize_mp_pool
 import Factorize_assync_mp
+import Factorize_mp_quene
 
 
 def timer(func):
