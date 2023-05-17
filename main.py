@@ -1,5 +1,4 @@
 import time
-import inspect
 
 
 import Factorize
@@ -10,8 +9,9 @@ import Factorize_assync_mp
 
 def timer(func):
     def wrapper(*args, **kwargs):
+        docstring = func.__doc__
         print("\n")
-        print(f"Функція: {inspect.getmodule(func).__name__}.{func.__name__}")
+        print(f"{docstring}")
         print("-" * 50)
         start_time = time.time()
         result = func(*args, **kwargs)
@@ -43,5 +43,5 @@ if __name__ == "__main__":
 
     no_proc(*data)
     multiproc_quene(*data)
-    multiproc_assync(*data)
     multiproc_pool(*data)
+    multiproc_assync(*data)

@@ -17,6 +17,7 @@ def find_factors(num):
 
 
 def factorize(*numbers):
+    """Використання ProcessPoolExecutor"""
     with ProcessPoolExecutor(max_workers=4) as executor:
         results = executor.map(find_factors, numbers)
         return results

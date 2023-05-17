@@ -18,6 +18,7 @@ def find_factors(num):
 
 
 def factorize(*numbers):
+    """Використання Pool"""
     with Pool(processes=cpu_count()) as p:
         result = p.map(find_factors, numbers)
     return result

@@ -17,6 +17,7 @@ def find_factors(num, queue):
 
 
 def factorize(*numbers):
+    """Використання Quene"""
     processes = []
     results = []
 
