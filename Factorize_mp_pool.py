@@ -7,7 +7,7 @@ logger.addHandler(stream_handler)
 logger.setLevel(logging.INFO)
 
 
-def find_factors(num):
+def find_factors(num: int) -> list:
     process_id = current_process().name
     logger.info(f"Process number {num} in process name {process_id}")
     factors = []
@@ -17,7 +17,7 @@ def find_factors(num):
     return factors
 
 
-def factorize(*numbers):
+def factorize(*numbers: int) -> list[list]:
     """Використання Pool"""
     with Pool(processes=cpu_count()) as p:
         result = p.map(find_factors, numbers)

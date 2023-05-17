@@ -7,7 +7,7 @@ logger.addHandler(stream_handler)
 logger.setLevel(logging.INFO)
 
 
-def find_factors(num):
+def find_factors(num: int) -> list:
     logger.info(f"Process number: {num}")
     factors = []
     for i in range(1, num + 1):
@@ -16,7 +16,7 @@ def find_factors(num):
     return factors
 
 
-def factorize(*numbers):
+def factorize(*numbers: int) -> list[list]:
     """Використання ProcessPoolExecutor"""
     with ProcessPoolExecutor(max_workers=4) as executor:
         results = executor.map(find_factors, numbers)

@@ -16,7 +16,7 @@ def find_factors(num):
     return factors
 
 
-def factorize(*numbers):
+def factorize(*numbers: int) -> list[list]:
     """Однопроцесорний багатопоточний код"""
     threads = []
     results = []

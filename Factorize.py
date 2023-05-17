@@ -6,16 +6,20 @@ logger.addHandler(stream_handler)
 logger.setLevel(logging.INFO)
 
 
-def factorize(*numbers):
+def find_factors(num: int) -> list:
+    logger.info(f"Process number {num}")
+    factors = []
+    for i in range(1, num + 1):
+        if num % i == 0:
+            factors.append(i)
+    return factors
+
+
+def factorize(*numbers: int) -> list[list]:
     """Однопроцесорний однопоточний код"""
     result = []
     for num in numbers:
-        logger.info(f"Process number: {num}")
-        factors = []
-        for i in range(1, num + 1):
-            if num % i == 0:
-                factors.append(i)
-        result.append(factors)
+        result.append(find_factors(num))
     return result
 
 

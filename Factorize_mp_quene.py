@@ -7,7 +7,7 @@ logger.addHandler(stream_handler)
 logger.setLevel(logging.INFO)
 
 
-def find_factors(num, queue):
+def find_factors(num: int, queue: Queue) -> None:
     process_id = current_process().name
     logger.info(f"Process number {num} in process name {process_id}")
     factors = []
@@ -17,7 +17,7 @@ def find_factors(num, queue):
     queue.put(factors)  # кладемо в чергу результат
 
 
-def factorize(*numbers):
+def factorize(*numbers: int) -> list[list]:
     """Використання Quene"""
     processes = []
     results = []
