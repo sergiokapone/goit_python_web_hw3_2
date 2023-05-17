@@ -19,7 +19,7 @@ def timer(func):
         end_time = time.time()
         execution_time = end_time - start_time
         print("-" * 50)
-        print(f"Час роботи: {execution_time}")
+        print(f"Час факторизації масиву чисел: {execution_time:.2f}")
         print("-" * 50)
         return result
 
