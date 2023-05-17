@@ -1,4 +1,4 @@
-from concurrent.futures import ProcessPoolExecutor
+from multiprocessing import Process, Queue
 import logging
 
 logger = logging.getLogger(__name__)
@@ -7,23 +7,39 @@ logger.addHandler(stream_handler)
 logger.setLevel(logging.INFO)
 
 
-def find_factors(num):
+def find_factors(num, queue):
     logger.info(f"Process number: {num}")
     factors = []
     for i in range(1, num + 1):
         if num % i == 0:
             factors.append(i)
-    return factors
+    queue.put(factors)
 
 
 def factorize(*numbers):
-    with ProcessPoolExecutor(max_workers=4) as executor:
-        results = executor.map(find_factors, numbers)
-        return results
+    processes = []
+    results = []
+
+    queue = Queue()
+
+    for number in numbers:
+        pr = Process(target=find_factors, args=(number, queue))
+        pr.start()
+        processes.append(pr)
+
+    for pr in processes:
+        pr.join()
+
+    while not queue.empty():
+        result = queue.get()
+        results.append(result)
+
+    return results
 
 
 if __name__ == "__main__":
     a, b, c, d = factorize(128, 255, 99999, 10651060)
+
     assert a == [1, 2, 4, 8, 16, 32, 64, 128]
     assert b == [1, 3, 5, 15, 17, 51, 85, 255]
     assert c == [1, 3, 9, 41, 123, 271, 369, 813, 2439, 11111, 33333, 99999]

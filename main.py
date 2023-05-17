@@ -3,7 +3,8 @@ import inspect
 
 
 import Factorize
-import Factorize_mp
+import Factorize_mp_quene
+import Factorize_mp_pool
 import Factorize_assync_mp
 
 
@@ -26,11 +27,21 @@ def timer(func):
 
 if __name__ == "__main__":
 
-    data = [128, 255, 99999, 10651060]
+    data = [128, 255, 99999, 10651060, 70651060, 70651062]
+
+    # синхронний однопроцесорний код
     no_proc = timer(Factorize.factorize)
-    multiproc = timer(Factorize_mp.factorize)
+
+    # мультипроцесорний код з чергою
+    multiproc_quene = timer(Factorize_mp_quene.factorize)
+
+    # мультипроцесорний код з пулом
+    multiproc_pool = timer(Factorize_mp_pool.factorize)
+
+    # мультипроцесорний код на concurrent.futures
     multiproc_assync = timer(Factorize_assync_mp.factorize)
 
     no_proc(*data)
-    multiproc(*data)
+    multiproc_quene(*data)
     multiproc_assync(*data)
+    multiproc_pool(*data)
