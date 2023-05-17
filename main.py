@@ -29,19 +29,14 @@ if __name__ == "__main__":
 
     data = [128, 255, 99999, 10651060, 70651060, 70651062]
 
-    # синхронний однопроцесорний код
-    no_proc = timer(Factorize.factorize)
-
-    # мультипроцесорний код з чергою
-    multiproc_quene = timer(Factorize_mp_quene.factorize)
-
-    # мультипроцесорний код з пулом
-    multiproc_pool = timer(Factorize_mp_pool.factorize)
-
-    # мультипроцесорний код на concurrent.futures
-    multiproc_assync = timer(Factorize_assync_mp.factorize)
-
-    no_proc(*data)
-    multiproc_quene(*data)
-    multiproc_pool(*data)
-    multiproc_assync(*data)
+    for fn in [
+        # синхронний однопроцесорний код
+        timer(Factorize.factorize),
+        # мультипроцесорний код з пулом
+        timer(Factorize_mp_pool.factorize),
+        # мультипроцесорний код нз пулом executor
+        timer(Factorize_assync_mp.factorize),
+        # мультипроцесорний код з чергою
+        timer(Factorize_mp_quene.factorize),
+    ]:
+        fn(*data)

@@ -13,7 +13,7 @@ def find_factors(num, queue):
     for i in range(1, num + 1):
         if num % i == 0:
             factors.append(i)
-    queue.put(factors)
+    queue.put(factors)  # кладемо в чергу результат
 
 
 def factorize(*numbers):
